@@ -11,7 +11,7 @@ cd "$(dirname "$0")/.."
 [ -f .env.deploy ] && . ./.env.deploy
 : "${COOLIFY_TOKEN:?Set COOLIFY_TOKEN in .env.deploy or your shell environment}"
 : "${COOLIFY_URL:=http://192.168.1.12:8000}"
-: "${COOLIFY_APP_UUID:=eocm1jmuwj7fbd1yb1r2u2w4}"
+: "${COOLIFY_APP_UUID:=btqmvj5d3tmfqp46ywhxaupu}"
 
 git push
 curl -fsS -X POST \
