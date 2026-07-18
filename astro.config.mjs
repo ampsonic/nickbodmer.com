@@ -27,5 +27,7 @@ export default defineConfig({
     '/2023/05/28/busy-day.html': '/posts/busy-day/',
     '/2023/05/17/which-mac-desktop.html': '/posts/which-mac-desktop/',
     '/2023/05/17/photochromic-sunglasses-generic.html': '/posts/photochromic-sunglasses-generic/',
+    // 2018 post recovered from the official .bar export (absent from the live feed)
+    '/unboxed-a-new': '/posts/unboxed-a-new/',
   },
 });
