@@ -42,6 +42,17 @@ const current = (prefix: string) =>
     <link rel="alternate" type="application/rss+xml" title="Nick Bodmer" href="/feed.xml" />
     <link rel="alternate" type="application/feed+json" title="Nick Bodmer (JSON Feed)" href="/feed.json" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    {
+      import.meta.env.PROD && (
+        <script
+          is:inline
+          defer
+          src="https://stats.nickbodmer.com/script.js"
+          data-website-id="974c997d-8c4f-4e2e-b484-1d6a76404efc"
+          data-domains="nickbodmer.com"
+        />
+      )
+    }
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
