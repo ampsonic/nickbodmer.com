@@ -2,11 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="CV" description="CV of Nick Bodmer — Sales Engineer.">
+<BaseLayout title="CV" description="CV of Nick Bodmer — Consulting Systems Engineer.">
   <header class="cv-header" style="margin-top: var(--space-6);">
     <div>
       <h1>Nick Bodmer</h1>
-      <p style="color: var(--text-muted); margin: var(--space-2) 0 0;">Sales Engineer</p>
+      <p style="color: var(--text-muted); margin: var(--space-2) 0 0;">Consulting Systems Engineer</p>
     </div>
     <address class="cv-contact" style="font-style: normal;">
       <a href="mailto:nick@nickbodmer.com">nick@nickbodmer.com</a><br />
@@ -15,33 +15,80 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </address>
   </header>
 
+  <p class="page-lede" style="max-width: 38rem; margin-top: var(--space-5);">
+    Experienced IT Solutions Architect with a background designing and engineering data center and
+    cloud solutions for enterprise organizations. Skilled in sales, marketing, and engineering team
+    engagement, with strong presentation and whiteboarding skills and a knack for expressing complex
+    concepts in nontechnical language.
+  </p>
+
   <section class="section" aria-label="Experience">
     <h2>Experience</h2>
     <div class="cv-entry">
-      <span class="cv-when">2023 – present</span>
+      <span class="cv-when">2019 – present</span>
       <div>
-        <h3>Sales Engineer · <span class="org">Everpure Data</span></h3>
-        <p>
-          Technical lead on enterprise data-platform deals: discovery, demos, proof-of-concept
-          builds, and RFP responses. <em>(Placeholder detail — real bullets to follow from LinkedIn.)</em>
-        </p>
-      </div>
-    </div>
-    <div class="cv-entry">
-      <span class="cv-when">2018 – 2023</span>
-      <div>
-        <h3>Senior Solutions Consultant · <span class="org">[Placeholder Company]</span></h3>
+        <h3>Consulting Systems Engineer · <span class="org">Pure Storage, Las Vegas, NV</span></h3>
         <ul>
-          <li>Owned technical evaluations for mid-market and enterprise prospects. <em>(placeholder)</em></li>
-          <li>Built demo environments and internal tooling used across the SE team. <em>(placeholder)</em></li>
+          <li>Led technical sales engagements for Pure Storage's enterprise data storage solutions.</li>
+          <li>Designed and presented complex storage architectures to C-level executives and IT decision-makers.</li>
+          <li>Consistently over-achieved quota.</li>
+          <li>Mentored new sales engineers and shared best practices across the team.</li>
+          <li>Build and maintain relationships with partners, helping to grow Pure Storage mindshare in the Las Vegas Valley.</li>
         </ul>
       </div>
     </div>
     <div class="cv-entry">
-      <span class="cv-when">2013 – 2018</span>
+      <span class="cv-when">2015 – 2019</span>
       <div>
-        <h3>Technical Account Manager · <span class="org">[Placeholder Company]</span></h3>
-        <p>Post-sales technical relationship owner for a portfolio of enterprise accounts. <em>(placeholder)</em></p>
+        <h3>Senior Systems Engineer · <span class="org">NetApp, Las Vegas, NV</span></h3>
+        <ul>
+          <li>Provided technology consulting to external customers and internal project teams for a Fortune 500 company managing and storing data on premises and in the cloud.</li>
+          <li>Achieved a team 182.7% AOP YTD FY17; recognized as the 8th best performing Enterprise team in the western US.</li>
+          <li>Built and maintained relationships with vendors and customers in roles from IT Engineers to C-level executives, delivering technology solutions designed around the customer's business needs.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">2014 – 2015</span>
+      <div>
+        <h3>Systems Engineer · <span class="org">Promark Technologies, Chicago, IL</span></h3>
+        <ul>
+          <li>Provided onsite implementation and hands-on knowledge transfer of virtualization and storage technologies for primary and secondary storage solutions.</li>
+          <li>Specialized in VMware vSphere and related products, including Tegile, Nutanix, HP Storage, Cisco UCS, and Veeam Backup/Replication.</li>
+          <li>Developed a comprehensive training program for new engineers.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">2013 – 2014</span>
+      <div>
+        <h3>QA Engineer · <span class="org">Networked Insights, Chicago, IL</span></h3>
+        <ul>
+          <li>Collaborated with software developers, client service managers, and customers on a QA suite of tools and processes supporting the quality and performance of social media analytics.</li>
+          <li>Identified a data validation issue and worked with key stakeholders on root cause and solution.</li>
+          <li>Worked with the engineering organization to develop a third-platform web application for social media analytics.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">2010 – 2013</span>
+      <div>
+        <h3>Solutions Architect · <span class="org">CDW, Chicago, IL</span></h3>
+        <ul>
+          <li>Provided pre-sales expertise in virtualization, storage technology (SAN and NAS), power and cooling, and backup/archival.</li>
+          <li>Provided sales training to CDW account managers.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">2008 – 2010</span>
+      <div>
+        <h3>Senior Account Manager · <span class="org">CDW, Chicago, IL</span></h3>
+        <ul>
+          <li>Managed roughly thirty customer accounts across business, government, and education, delivering new technologies to increase user productivity.</li>
+          <li>Recognized as a top performer in both revenue and profit goal attainment.</li>
+          <li>Led a server consolidation project for a major university, reducing 60+ servers to a 4-server footprint.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -50,11 +97,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2>Skills</h2>
     <div class="cv-entry">
       <span class="cv-when">Pre-sales</span>
-      <div><p>Discovery, technical demos, POC design and execution, RFP/RFI responses, executive presentations.</p></div>
+      <div><p>Discovery, technical demos, POC design and execution, RFP/RFI responses, executive presentations and whiteboarding.</p></div>
     </div>
     <div class="cv-entry">
       <span class="cv-when">Technical</span>
-      <div><p>Networking &amp; DNS, Docker, Linux administration, Ansible, Swift/SwiftUI, video production and editing.</p></div>
+      <div><p>Enterprise storage (SAN/NAS), virtualization, networking &amp; DNS, Docker, Linux administration, Ansible, Swift/SwiftUI, video production and editing.</p></div>
     </div>
     <div class="cv-entry">
       <span class="cv-when">On the side</span>
@@ -65,10 +112,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="section" aria-label="Education">
     <h2>Education</h2>
     <div class="cv-entry">
-      <span class="cv-when">B.A.</span>
+      <span class="cv-when">2007</span>
       <div>
-        <h3>Theatre · <span class="org">Illinois State University</span></h3>
-        <p>Where the “enthusiastically sharing” half comes from.</p>
+        <h3>B.S., Theatrical Design &amp; Production · <span class="org">Illinois State University</span></h3>
+        <p>Minor in Computer Information Systems. Where the “enthusiastically sharing” half comes from.</p>
       </div>
     </div>
   </section>

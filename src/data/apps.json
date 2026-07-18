@@ -5,8 +5,7 @@
     "oneLiner": "Auto-generates a shareable recap of your fantasy football league's week.",
     "description": "Your fantasy football league's week, turned into a shareable recap — highest scorer, closest matchup, the bench points that would've won it. Generate it Tuesday morning, drop it in the group chat, start the trash talk.",
     "platform": "iOS",
-    "appStoreUrl": "https://apps.apple.com/app/id0000000001",
-    "placeholder": true,
+    "appStoreUrl": "https://apps.apple.com/us/app/league-rewind-fantasy-football/id6499177011",
     "tint": "teal"
   },
   {
@@ -15,8 +14,7 @@
     "oneLiner": "A clean tracker for sales commission and on-target earnings.",
     "description": "A clean tracker for sales commission and on-target earnings. Log deals as they close and always know where you stand against quota — no spreadsheet gymnastics, no guessing what the check will be.",
     "platform": "iOS",
-    "appStoreUrl": "https://apps.apple.com/app/id0000000002",
-    "placeholder": true,
+    "appStoreUrl": "https://apps.apple.com/us/app/closed-ote-commission-calc/id6480220690",
     "tint": "amber"
   },
   {
@@ -25,8 +23,7 @@
     "oneLiner": "An F1 fantasy game: you and your friends predict the P10 finisher each race.",
     "description": "An F1 fantasy game for you and your friends: before each race, everyone predicts who finishes tenth. Deceptively simple, weirdly strategic, and the best reason I know to care about the midfield.",
     "platform": "iOS",
-    "appStoreUrl": "https://apps.apple.com/app/id0000000003",
-    "placeholder": true,
+    "appStoreUrl": "https://apps.apple.com/us/app/p10-pick-em-racing-predictor/id6759510753",
     "tint": "berry"
   }
 ]
