@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import apps from '../data/apps.json';
+import { sortByDateDesc } from '../lib/post-utils';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(sortByDateDesc);
+const related = (slug: string) => posts.filter((p) => p.data.app === slug);
+
+const tintVar: Record<string, string> = {
+  teal: 'var(--accent-teal)',
+  amber: 'var(--accent)',
+  berry: 'var(--accent-berry)',
+};
+---
+
+<BaseLayout
+  title="Apps"
+  description="Small iOS apps I build on the side: League Rewind, Closed, and P10."
+>
+  <h1 style="margin-top: var(--space-6);">Apps</h1>
+  <p class="page-lede" style="max-width: 36rem;">
+    Small iOS apps I build on the side — each one started as something my friends and I wanted for
+    ourselves. I write about them <a href="/posts/">on the blog</a> as they grow.
+  </p>
+
+  {
+    apps.map((app) => {
+      const appPosts = related(app.slug);
+      return (
+        <section class="section" id={app.slug} aria-label={app.name} style={`--dot: ${tintVar[app.tint]};`}>
+          <h2>{app.name}</h2>
+          <p style="margin-top: var(--space-4);">{app.description}</p>
+          <p class="app-store-line">
+            {app.platform} · <a href={app.appStoreUrl}>Download on the App Store ↗</a>
+            {app.placeholder && <em> (placeholder link)</em>}
+          </p>
+          <h3 class="related-heading">Related posts</h3>
+          {appPosts.length > 0 ? (
+            <PostList posts={appPosts} />
+          ) : (
+            <p class="related-empty">Nothing yet — when I write about {app.name}, it'll show up here.</p>
+          )}
+        </section>
+      );
+    })
+  }
+
+  <p class="apps-footer-note">
+    Questions, bugs, or ideas? <a href="mailto:nick@nickbodmer.com">nick@nickbodmer.com</a> — I read
+    everything.
+  </p>
+</BaseLayout>

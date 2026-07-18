@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="site.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Nunito+Sans:wght@600;700&display=swap">
+</helmet>
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="Home.dc.html">Nick Bodmer<span style="color: var(--accent);">.</span></a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="Posts.dc.html" style="--c: var(--accent-berry);">Posts</a>
+      <a href="Apps.dc.html" aria-current="page" style="--c: var(--accent);">Apps</a>
+      <a href="CV.dc.html" style="--c: var(--accent-teal);">CV</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <h1 style="margin-top: var(--space-6);">Apps</h1>
+  <p style="color: var(--text-muted); margin-top: var(--space-2); max-width: 36rem;">Small iOS apps I build on the side — each one started as something my friends and I wanted for ourselves. I write about them <a href="Posts.dc.html">on the blog</a> as they grow.</p>
+
+  <section class="section" id="league-rewind" aria-label="League Rewind" style="--dot: var(--accent-teal);">
+    <h2>League Rewind</h2>
+    <p style="margin-top: var(--space-4);">Your fantasy football league's week, turned into a shareable recap — highest scorer, closest matchup, the bench points that would've won it. Generate it Tuesday morning, drop it in the group chat, start the trash talk.</p>
+    <p style="color: var(--text-muted); font-size: var(--step--1);">iOS · <a href="https://apps.apple.com/app/id0000000001">Download on the App Store ↗</a> <em>(placeholder link)</em></p>
+    <h3 style="font-size: var(--step-0); color: var(--text-muted); margin-top: var(--space-5);">Related posts</h3>
+    <ul class="post-list">
+      <li><a href="Post.dc.html">League Rewind is on the App Store</a><time datetime="2024-09-03">Sep 3, 2024</time></li>
+    </ul>
+  </section>
+
+  <section class="section" id="closed" aria-label="Closed">
+    <h2>Closed</h2>
+    <p style="margin-top: var(--space-4);">A clean tracker for sales commission and on-target earnings. Log deals as they close and always know where you stand against quota — no spreadsheet gymnastics, no guessing what the check will be.</p>
+    <p style="color: var(--text-muted); font-size: var(--step--1);">iOS · <a href="https://apps.apple.com/app/id0000000002">Download on the App Store ↗</a> <em>(placeholder link)</em></p>
+    <h3 style="font-size: var(--step-0); color: var(--text-muted); margin-top: var(--space-5);">Related posts</h3>
+    <ul class="post-list">
+      <li><a href="Post.dc.html">A tiny SwiftUI app for our chore chart</a><time datetime="2021-03-14">Mar 14, 2021</time></li>
+    </ul>
+  </section>
+
+  <section class="section" id="p10" aria-label="P10" style="--dot: var(--accent-berry);">
+    <h2>P10</h2>
+    <p style="margin-top: var(--space-4);">An F1 fantasy game for you and your friends: before each race, everyone predicts who finishes tenth. Deceptively simple, weirdly strategic, and the best reason I know to care about the midfield.</p>
+    <p style="color: var(--text-muted); font-size: var(--step--1);">iOS · <a href="https://apps.apple.com/app/id0000000003">Download on the App Store ↗</a> <em>(placeholder link)</em></p>
+    <h3 style="font-size: var(--step-0); color: var(--text-muted); margin-top: var(--space-5);">Related posts</h3>
+    <ul class="post-list">
+      <li><a href="Post.dc.html">P10, season two: what we changed</a><time datetime="2025-09-30">Sep 30, 2025</time></li>
+    </ul>
+  </section>
+
+  <p style="margin-top: var(--space-7); color: var(--text-muted); font-size: var(--step--1);">Questions, bugs, or ideas? <a href="mailto:nick@nickbodmer.com">nick@nickbodmer.com</a> — I read everything.</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Nick Bodmer</span>
+    <span><em class="mission" style="font-size: var(--step--1); font-weight: 500;">Enthusiastically sharing curiosity.</em> · <a href="#rss">RSS</a></span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;auto&quot;, &quot;options&quot;: [&quot;auto&quot;, &quot;light&quot;, &quot;dark&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;fonts&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;system-sans&quot;, &quot;options&quot;: [&quot;system-sans&quot;, &quot;iowan&quot;, &quot;newsreader&quot;, &quot;charter&quot;, &quot;nunito&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;bg&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;glow&quot;, &quot;options&quot;: [&quot;glow&quot;, &quot;graph&quot;, &quot;paper&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;glowIntensity&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 50, &quot;min&quot;: 0, &quot;max&quot;: 100, &quot;step&quot;: 5, &quot;tsType&quot;: &quot;number&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { this.applyTheme(); }
+  componentDidUpdate() { this.applyTheme(); }
+  applyTheme() {
+    const t = this.props.theme ?? 'auto';
+    if (t === 'auto') delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = t;
+    const f = this.props.fonts ?? 'system-sans';
+    if (f === 'system-sans') delete document.documentElement.dataset.fonts;
+    else document.documentElement.dataset.fonts = f;
+    const b = this.props.bg ?? 'glow';
+    if (b === 'glow') delete document.documentElement.dataset.bg;
+    else document.documentElement.dataset.bg = b;
+    const g = this.props.glowIntensity ?? 85;
+    document.documentElement.style.setProperty('--glow-k', String(g / 50));
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

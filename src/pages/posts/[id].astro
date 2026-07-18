@@ -1,0 +1,38 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import apps from '../../data/apps.json';
+import { postTitle, excerpt, formatDateLong, sortByDateDesc } from '../../lib/post-utils';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const all = (await getCollection('posts', ({ data }) => !data.draft)).sort(sortByDateDesc);
+const older = all[all.findIndex((p) => p.id === post.id) + 1];
+
+const app = apps.find((a) => a.slug === post.data.app);
+---
+
+<BaseLayout title={post.data.title} description={excerpt(post)}>
+  <article class="prose">
+    {post.data.title && <h1>{post.data.title}</h1>}
+    <p class="post-meta">
+      <time datetime={post.data.date.toISOString().slice(0, 10)}>{formatDateLong(post.data.date)}</time>
+      {app && <> · <a href={`/apps/#${app.slug}`}>{app.name}</a></>}
+    </p>
+    <div class="post-body">
+      <Content />
+    </div>
+  </article>
+
+  <nav aria-label="More posts" class="post-nav">
+    <a href="/posts/">← All posts</a>
+    {older && <a href={`/posts/${older.id}/`}>Next: {postTitle(older)} →</a>}
+  </nav>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { postTitle, isUntitled, formatDate } from '../lib/post-utils';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+  showYear?: boolean;
+}
+
+const { posts, showYear = true } = Astro.props;
+---
+
+<ul class="post-list">
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/posts/${post.id}/`} class:list={{ 'post-untitled': isUntitled(post) }}>
+          {postTitle(post)}
+        </a>
+        <time datetime={post.data.date.toISOString().slice(0, 10)}>
+          {formatDate(post.data.date, { year: showYear })}
+        </time>
+      </li>
+    ))
+  }
+</ul>

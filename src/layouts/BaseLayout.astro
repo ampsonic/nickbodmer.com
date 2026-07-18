@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Enthusiastically sharing curiosity. Technology enthusiast, homelab tinkerer, indie app developer.',
+  ogImage = '/images/og-default.jpg',
+} = Astro.props;
+
+const pageTitle = title ? `${title} · Nick Bodmer` : 'Nick Bodmer';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+const path = Astro.url.pathname;
+const current = (prefix: string) =>
+  path === prefix || path === `${prefix}/` || path.startsWith(`${prefix}/`) ? 'page' : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf7f2" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#272220" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Nick Bodmer" href="/feed.xml" />
+    <link rel="alternate" type="application/feed+json" title="Nick Bodmer (JSON Feed)" href="/feed.json" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="wordmark" href="/">Nick Bodmer<span style="color: var(--accent);">.</span></a>
+        <nav class="site-nav" aria-label="Site">
+          <a href="/posts/" aria-current={current('/posts')} style="--c: var(--accent-berry);">Posts</a>
+          <a href="/apps/" aria-current={current('/apps')} style="--c: var(--accent);">Apps</a>
+          <a href="/cv/" aria-current={current('/cv')} style="--c: var(--accent-teal);">CV</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© {new Date().getFullYear()} Nick Bodmer</span>
+        <span><em class="mission">Enthusiastically sharing curiosity.</em> · <a href="/feed.xml">RSS</a></span>
+      </div>
+    </footer>
+  </body>
+</html>

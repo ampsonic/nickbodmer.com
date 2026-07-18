@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import apps from '../data/apps.json';
+import headshot from '../assets/nick-headshot.jpg';
+import { sortByDateDesc } from '../lib/post-utils';
+
+const recentPosts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort(sortByDateDesc)
+  .slice(0, 4);
+
+const tintVar: Record<string, string> = {
+  teal: 'var(--accent-teal)',
+  amber: 'var(--accent)',
+  berry: 'var(--accent-berry)',
+};
+---
+
+<BaseLayout>
+  <section aria-label="Introduction" class="intro">
+    <Image src={headshot} alt="Nick Bodmer" width={84} height={84} densities={[1, 2]} class="avatar" loading="eager" />
+    <div>
+      <h1>Nick Bodmer</h1>
+      <p class="descriptor">
+        Technology enthusiast <span style="color: var(--accent-teal);">·</span> homelab tinkerer
+        <span style="color: var(--accent-berry);">·</span> indie app developer
+      </p>
+    </div>
+  </section>
+  <p class="bio">
+    I like figuring out how things work, then telling you about it. Around here that means homelab
+    experiments, <a href="/apps/">small iOS apps</a> I ship on the side, and the occasional video.
+    Theatre degree, four kids, and more Raspberry Pis than I'll admit to.
+  </p>
+
+  <section class="section" aria-label="Apps">
+    <h2>Things I've made</h2>
+    <ul class="app-list">
+      {
+        apps.map((app) => (
+          <li style={`--tint: ${tintVar[app.tint]};`}>
+            <span class="app-name">
+              <a href={`/apps/#${app.slug}`}>{app.name}</a>
+            </span>
+            <p class="app-desc">{app.oneLiner}</p>
+            <span class="app-meta">
+              {app.platform} · <a href={app.appStoreUrl}>App Store ↗</a>
+              {app.placeholder && <em> (placeholder link)</em>}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="section-more" style="margin-top: var(--space-4);"><a href="/apps/">More about the apps →</a></p>
+  </section>
+
+  <section class="section" aria-label="Elsewhere" style="--dot: var(--accent-teal);">
+    <h2>Elsewhere</h2>
+    <ul class="elsewhere">
+      <li><a href="https://techhub.social/@Ampsonic" rel="me">Mastodon <span class="handle">@Ampsonic</span></a></li>
+      <li><a href="https://github.com/ampsonic" rel="me">GitHub <span class="handle">ampsonic</span></a></li>
+      <li><a href="https://bsky.app/profile/nickbodmer.bsky.social">Bluesky <span class="handle">nickbodmer.bsky.social</span></a></li>
+      <li><a href="https://www.threads.com/@ampsonic">Threads <span class="handle">@ampsonic</span></a></li>
+      <li><a href="https://instagram.com/ampsonic">Instagram <span class="handle">ampsonic</span></a></li>
+      <li><a href="https://www.youtube.com/@ampsonic">YouTube <span class="handle">@ampsonic</span></a></li>
+      <li><a href="https://linkedin.com/in/nickbodmer">LinkedIn <span class="handle">nickbodmer</span></a></li>
+    </ul>
+    <p style="margin-top: var(--space-4); color: var(--text-muted); font-size: var(--step--1);">
+      Or the old-fashioned ways: email me at <a href="mailto:nick@nickbodmer.com">nick@nickbodmer.com</a>,
+      subscribe by <a href="/feed.xml">RSS</a>, or dig through the
+      <a href="https://griffinhammond.com/podcast">podcast</a> I used to co-host.
+    </p>
+  </section>
+
+  <section class="section" aria-label="Recent posts" style="--dot: var(--accent-berry);">
+    <h2>Recent posts</h2>
+    <PostList posts={recentPosts} />
+    <p class="section-more" style="margin-top: var(--space-3);"><a href="/posts/">All posts →</a></p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="site.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Nunito+Sans:wght@600;700&display=swap">
+</helmet>
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="Home.dc.html">Nick Bodmer<span style="color: var(--accent);">.</span></a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="Posts.dc.html" style="--c: var(--accent-berry);">Posts</a>
+      <a href="Apps.dc.html" style="--c: var(--accent);">Apps</a>
+      <a href="CV.dc.html" style="--c: var(--accent-teal);">CV</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section aria-label="Introduction" style="margin-top: var(--space-6); display: flex; gap: var(--space-5); align-items: flex-start;">
+    <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="avatar" shape="circle" placeholder="photo" style="width:84px;height:84px;flex:none" hint-size="84px,84px"></x-import>
+    <div>
+      <h1>Nick Bodmer</h1>
+      <p style="color: var(--text-muted); font-size: var(--step-0); margin: var(--space-2) 0 0;">Technology enthusiast <span style="color: var(--accent-teal);">·</span> homelab tinkerer <span style="color: var(--accent-berry);">·</span> indie app developer</p>
+    </div>
+  </section>
+  <p style="margin-top: var(--space-5); max-width: 36rem;">I like figuring out how things work, then telling you about it. Around here that means homelab experiments, <a href="Apps.dc.html">small iOS apps</a> I ship on the side, and the occasional video. Theatre degree, four kids, and more Raspberry Pis than I'll admit to.</p>
+
+  <section class="section" aria-label="Apps">
+    <h2>Things I've made</h2>
+    <ul class="app-list">
+      <li style="--tint: var(--accent-teal);">
+        <span class="app-name"><a href="Apps.dc.html#league-rewind">League Rewind</a></span>
+        <p class="app-desc">Auto-generates a shareable recap of your fantasy football league's week.</p>
+        <span class="app-meta">iOS · <a href="https://apps.apple.com/app/id0000000001">App Store ↗</a> <em>(placeholder link)</em></span>
+      </li>
+      <li>
+        <span class="app-name"><a href="Apps.dc.html#closed">Closed</a></span>
+        <p class="app-desc">A clean tracker for sales commission and on-target earnings.</p>
+        <span class="app-meta">iOS · <a href="https://apps.apple.com/app/id0000000002">App Store ↗</a> <em>(placeholder link)</em></span>
+      </li>
+      <li style="--tint: var(--accent-berry);">
+        <span class="app-name"><a href="Apps.dc.html#p10">P10</a></span>
+        <p class="app-desc">An F1 fantasy game: you and your friends predict the P10 finisher each race.</p>
+        <span class="app-meta">iOS · <a href="https://apps.apple.com/app/id0000000003">App Store ↗</a> <em>(placeholder link)</em></span>
+      </li>
+    </ul>
+    <p class="section-more" style="margin-top: var(--space-4);"><a href="Apps.dc.html">More about the apps →</a></p>
+  </section>
+
+  <section class="section" aria-label="Elsewhere" style="--dot: var(--accent-teal);">
+    <h2>Elsewhere</h2>
+    <ul class="elsewhere">
+      <li><a href="https://techhub.social/@Ampsonic" rel="me">Mastodon <span class="handle">@Ampsonic</span></a></li>
+      <li><a href="https://github.com/ampsonic">GitHub <span class="handle">ampsonic</span></a></li>
+      <li><a href="https://bsky.app/profile/ampsonic.bsky.social">Bluesky <span class="handle">@ampsonic</span></a></li>
+      <li><a href="https://www.threads.net/@ampsonic">Threads <span class="handle">@ampsonic</span></a></li>
+      <li><a href="https://instagram.com/ampsonic">Instagram <span class="handle">ampsonic</span></a></li>
+      <li><a href="https://youtube.com/ampsonic">YouTube <span class="handle">ampsonic</span></a></li>
+      <li><a href="https://linkedin.com/in/nickbodmer">LinkedIn <span class="handle">nickbodmer</span></a></li>
+    </ul>
+    <p style="margin-top: var(--space-4); color: var(--text-muted); font-size: var(--step--1);">Or the old-fashioned ways: email me at <a href="mailto:nick@nickbodmer.com">nick@nickbodmer.com</a>, subscribe by <a href="#rss">RSS</a>, or dig through the <a href="https://griffinhammond.com/podcast">podcast</a> I used to co-host.</p>
+  </section>
+
+  <section class="section" aria-label="Recent posts" style="--dot: var(--accent-berry);">
+    <h2>Recent posts</h2>
+    <ul class="post-list">
+      <li><a href="Post.dc.html">P10, season two: what we changed</a><time datetime="2025-09-30">Sep 30, 2025</time></li>
+      <li><a href="Post.dc.html">Taming the Home Lab: Friendly Local Domains with UniFi + Pi-hole + NPM</a><time datetime="2025-06-28">Jun 28, 2025</time></li>
+      <li><a href="Post.dc.html">League Rewind is on the App Store</a><time datetime="2024-09-03">Sep 3, 2024</time></li>
+      <li><a href="Post.dc.html">Spacial Vision Livestream – The Talk Show: Live from WWDC 2024</a><time datetime="2024-06-11">Jun 11, 2024</time></li>
+    </ul>
+    <p class="section-more" style="margin-top: var(--space-3);"><a href="Posts.dc.html">All posts →</a></p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Nick Bodmer</span>
+    <span><em class="mission" style="font-size: var(--step--1); font-weight: 500;">Enthusiastically sharing curiosity.</em> · <a href="#rss">RSS</a></span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;auto&quot;, &quot;options&quot;: [&quot;auto&quot;, &quot;light&quot;, &quot;dark&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;fonts&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;system-sans&quot;, &quot;options&quot;: [&quot;system-sans&quot;, &quot;iowan&quot;, &quot;newsreader&quot;, &quot;charter&quot;, &quot;nunito&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;bg&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;glow&quot;, &quot;options&quot;: [&quot;glow&quot;, &quot;graph&quot;, &quot;paper&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;glowIntensity&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 50, &quot;min&quot;: 0, &quot;max&quot;: 100, &quot;step&quot;: 5, &quot;tsType&quot;: &quot;number&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { this.applyTheme(); }
+  componentDidUpdate() { this.applyTheme(); }
+  applyTheme() {
+    const t = this.props.theme ?? 'auto';
+    if (t === 'auto') delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = t;
+    const f = this.props.fonts ?? 'system-sans';
+    if (f === 'system-sans') delete document.documentElement.dataset.fonts;
+    else document.documentElement.dataset.fonts = f;
+    const b = this.props.bg ?? 'glow';
+    if (b === 'glow') delete document.documentElement.dataset.bg;
+    else document.documentElement.dataset.bg = b;
+    const g = this.props.glowIntensity ?? 85;
+    document.documentElement.style.setProperty('--glow-k', String(g / 50));
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

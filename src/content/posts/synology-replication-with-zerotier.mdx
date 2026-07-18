@@ -1,0 +1,52 @@
+---
+title: "Synology Replication with ZeroTier"
+date: 2021-04-18
+source: hugo
+---
+
+import YouTube from '../../components/YouTube.astro';
+
+## Introduction
+
+What I want is to backup my Synology NAS without huge cloud storage costs. In a perfect world, I'd take a 2nd Synology, drop it off at a friend's house, and it would just work. No messing with their network, setting up dynamic dns services, static IP addresses or port forwarding. Just plug it in and turn it on, and it works. And it's possible using a service called ZeroTier. Using ZeroTier, the two devices will appear to be on the same local network, no matter where they are in the world.
+
+<YouTube id="NB5CQcw1qmg" title="Synology Replication with ZeroTier" />
+
+## Instructions
+
+- Primary NAS uses a static IP on local network
+- Remote NAS set to DHCP
+- Create Zero Tier Account
+- Create Network
+- Download correct ZeroTier package for your synology models
+  - Architecture per Synology model: [https://github.com/SynoCommunity/spksrc/wiki/Architecture-per-Synology-model](https://github.com/SynoCommunity/spksrc/wiki/Architecture-per-Synology-model)
+  - Zerotier Synology download: [https://download.zerotier.com/dist/synology/](https://download.zerotier.com/dist/synology/)
+- On Primary NAS
+  - Package center > manual install > select ZeroTier package
+  - Launch ZeroTier, add network ID
+  - Approve device from ZeroTier dashboard
+  - Label Device Name
+- Repeat for Remote NAS
+- On Primary and Remote NAS
+  - Package manager > search snapshot > install "snapshot replication"
+- On Primary NAS
+  - Open snapshot replication
+  - Replication > create
+  - Select remote, next
+  - Server name: use zerotier IP of Secondary NAS
+  - Advanced Settings
+    - Source Server
+    - Server name or IP address drop down, select zerotier IP, click OK
+  - Enter Secondary NAS username / password, click next
+  - Select destination volume
+  - Select share to replicate
+  - Send initial copy over the network
+  - Select replication schedule
+  - Set retention schedule
+  - Apply
+  - Done!
+
+## Links
+
+[https://github.com/SynoCommunity/spksrc/wiki/Architecture-per-Synology-model](https://github.com/SynoCommunity/spksrc/wiki/Architecture-per-Synology-model)
+[https://download.zerotier.com/dist/synology/](https://download.zerotier.com/dist/synology/)

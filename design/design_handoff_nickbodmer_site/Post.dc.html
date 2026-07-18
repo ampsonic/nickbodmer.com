@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="site.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Nunito+Sans:wght@600;700&display=swap">
+</helmet>
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="Home.dc.html">Nick Bodmer<span style="color: var(--accent);">.</span></a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="Posts.dc.html" aria-current="page" style="--c: var(--accent-berry);">Posts</a>
+      <a href="Apps.dc.html" style="--c: var(--accent);">Apps</a>
+      <a href="CV.dc.html" style="--c: var(--accent-teal);">CV</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <article class="prose">
+    <h1>Taming the Home Lab: Friendly Local Domains with UniFi + Pi-hole + NPM</h1>
+    <p class="post-meta"><time datetime="2025-06-28">June 28, 2025</time> · homelab</p>
+
+    <p style="margin-top: var(--space-5);">Every homelab hits the same wall eventually: a dozen services, each living at an IP-and-port combo nobody can remember. <code>192.168.1.40:8123</code> is not a name — it's a punishment. This weekend I finally gave everything a friendly local domain, so Home Assistant lives at <code>home.lab.internal</code> and Proxmox at <code>pve.lab.internal</code>, with real TLS and no port numbers in sight.</p>
+    <p>Three pieces do the work: <strong>Pi-hole</strong> answers local DNS, <strong>Nginx Proxy Manager</strong> routes names to services, and <strong>UniFi</strong> hands both out to every device on the network. Here's the whole setup.</p>
+
+    <h2>Step 1: Wildcard DNS in Pi-hole</h2>
+    <p>Instead of adding a record per service, point a wildcard at the box running Nginx Proxy Manager. On the Pi-hole host, one line in a dnsmasq config does it:</p>
+    <pre class="code"><code><span class="tok-c"># /etc/dnsmasq.d/99-lab.conf
+# Send every *.lab.internal lookup to the NPM box
+</span><span class="tok-k">address</span>=<span class="tok-s">/lab.internal/</span><span class="tok-v">192.168.1.20
+</span><span class="tok-p">
+$ </span><span class="tok-k">sudo</span><span> systemctl restart pihole-FTL
+</span><span class="tok-p">$ </span><span>dig +short home.lab.internal </span><span class="tok-c"># should answer 192.168.1.20
+</span><span class="tok-v">192.168.1.20</span></code></pre>
+
+    <h2>Step 2: Nginx Proxy Manager routes the names</h2>
+    <p>NPM runs in Docker and terminates TLS for everything behind it. The compose file is short:</p>
+    <pre class="code"><code><span class="tok-c"># docker-compose.yml
+</span><span class="tok-k">services</span><span>:
+  </span><span class="tok-k">npm</span><span>:
+    </span><span class="tok-k">image</span><span>: </span><span class="tok-s">jc21/nginx-proxy-manager:latest
+</span><span>    </span><span class="tok-k">restart</span><span>: </span><span class="tok-s">unless-stopped
+</span><span>    </span><span class="tok-k">ports</span><span>:
+      - </span><span class="tok-v">"80:80"
+</span><span>      - </span><span class="tok-v">"443:443"
+</span><span>      - </span><span class="tok-v">"81:81"</span><span>   </span><span class="tok-c"># admin UI
+</span><span>    </span><span class="tok-k">volumes</span><span>:
+      - </span><span class="tok-s">./data:/data
+</span><span>      - </span><span class="tok-s">./letsencrypt:/etc/letsencrypt</span></code></pre>
+    <p>Then add a proxy host per service in the admin UI: <code>home.lab.internal</code> → <code>192.168.1.40:8123</code>, and so on. Ten minutes of clicking, done forever.</p>
+    <figure>
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="npm-hosts" shape="rounded" placeholder="Screenshot: NPM proxy hosts list" style="width:100%;height:340px" hint-size="100%,340px"></x-import>
+      <figcaption>The full hosts list in Nginx Proxy Manager — one friendly name per service.</figcaption>
+    </figure>
+
+    <h2>Step 3: Tell UniFi about it</h2>
+    <p>In the UniFi console, set your network's DHCP DNS server to the Pi-hole's IP so every device — phones included — resolves the new names automatically. No per-device setup, which matters in a house with four kids' worth of iPads.</p>
+    <p>I walked through the whole thing on camera if you'd rather watch:</p>
+    <div class="video-embed" role="img" aria-label="YouTube video: Friendly local domains walkthrough">
+      <div style="width:100%;height:100%;display:grid;place-content:center;text-align:center;gap:var(--space-2);background:repeating-linear-gradient(45deg, var(--bg-subtle), var(--bg-subtle) 12px, var(--code-bg) 12px, var(--code-bg) 24px);">
+        <span style="font-family:var(--font-mono);font-size:var(--step--1);color:var(--text-muted);">▶ YouTube embed — youtube.com/ampsonic</span>
+        <span style="font-family:var(--font-mono);font-size:var(--step--1);color:var(--text-muted);">“Friendly Local Domains walkthrough” · 16:9</span>
+      </div>
+    </div>
+
+    <h2>Gotchas</h2>
+    <ul>
+      <li>Use <code>.internal</code> (or your own registered domain), never <code>.local</code> — mDNS already owns that and iOS devices will fight you.</li>
+      <li>Pi-hole must be the <em>only</em> DNS server DHCP hands out, or clients will race a resolver that's never heard of your lab.</li>
+      <li>For green-padlock TLS on internal names, do a DNS-01 challenge in NPM against a real domain you own.</li>
+    </ul>
+    <p>That's it — the lab finally answers to names a human can remember. If you get stuck, <a href="mailto:nick@nickbodmer.com">email me</a>; this stuff is more fun with company.</p>
+  </article>
+
+  <nav aria-label="More posts" style="margin-top: var(--space-7); display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; font-size: var(--step--1);">
+    <a href="Posts.dc.html">← All posts</a>
+    <a href="Post.dc.html">Next: P10, season two →</a>
+  </nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Nick Bodmer</span>
+    <span><em class="mission" style="font-size: var(--step--1); font-weight: 500;">Enthusiastically sharing curiosity.</em> · <a href="#rss">RSS</a></span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;auto&quot;, &quot;options&quot;: [&quot;auto&quot;, &quot;light&quot;, &quot;dark&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;fonts&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;system-sans&quot;, &quot;options&quot;: [&quot;system-sans&quot;, &quot;iowan&quot;, &quot;newsreader&quot;, &quot;charter&quot;, &quot;nunito&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;bg&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;glow&quot;, &quot;options&quot;: [&quot;glow&quot;, &quot;graph&quot;, &quot;paper&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;glowIntensity&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 50, &quot;min&quot;: 0, &quot;max&quot;: 100, &quot;step&quot;: 5, &quot;tsType&quot;: &quot;number&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { this.applyTheme(); }
+  componentDidUpdate() { this.applyTheme(); }
+  applyTheme() {
+    const t = this.props.theme ?? 'auto';
+    if (t === 'auto') delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = t;
+    const f = this.props.fonts ?? 'system-sans';
+    if (f === 'system-sans') delete document.documentElement.dataset.fonts;
+    else document.documentElement.dataset.fonts = f;
+    const b = this.props.bg ?? 'glow';
+    if (b === 'glow') delete document.documentElement.dataset.bg;
+    else document.documentElement.dataset.bg = b;
+    const g = this.props.glowIntensity ?? 85;
+    document.documentElement.style.setProperty('--glow-k', String(g / 50));
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="site.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Nunito+Sans:wght@600;700&display=swap">
+</helmet>
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="Home.dc.html">Nick Bodmer<span style="color: var(--accent);">.</span></a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="Posts.dc.html" style="--c: var(--accent-berry);">Posts</a>
+      <a href="Apps.dc.html" style="--c: var(--accent);">Apps</a>
+      <a href="CV.dc.html" aria-current="page" style="--c: var(--accent-teal);">CV</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <header class="cv-header" style="margin-top: var(--space-6);">
+    <div>
+      <h1>Nick Bodmer</h1>
+      <p style="color: var(--text-muted); margin: var(--space-2) 0 0;">Sales Engineer</p>
+    </div>
+    <address class="cv-contact" style="font-style: normal;">
+      <a href="mailto:nick@nickbodmer.com">nick@nickbodmer.com</a><br>
+      <a href="https://nickbodmer.com">nickbodmer.com</a><br>
+      <a href="https://linkedin.com/in/nickbodmer">linkedin.com/in/nickbodmer</a>
+    </address>
+  </header>
+
+  <section class="section" aria-label="Experience">
+    <h2>Experience</h2>
+    <div class="cv-entry">
+      <span class="cv-when">2023 – present</span>
+      <div>
+        <h3>Sales Engineer · <span class="org">Everpure Data</span></h3>
+        <p>Technical lead on enterprise data-platform deals: discovery, demos, proof-of-concept builds, and RFP responses. <em>(Placeholder detail — real bullets to follow from LinkedIn.)</em></p>
+      </div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">2018 – 2023</span>
+      <div>
+        <h3>Senior Solutions Consultant · <span class="org">[Placeholder Company]</span></h3>
+        <ul>
+          <li>Owned technical evaluations for mid-market and enterprise prospects. <em>(placeholder)</em></li>
+          <li>Built demo environments and internal tooling used across the SE team. <em>(placeholder)</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">2013 – 2018</span>
+      <div>
+        <h3>Technical Account Manager · <span class="org">[Placeholder Company]</span></h3>
+        <p>Post-sales technical relationship owner for a portfolio of enterprise accounts. <em>(placeholder)</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Skills">
+    <h2>Skills</h2>
+    <div class="cv-entry">
+      <span class="cv-when">Pre-sales</span>
+      <div><p>Discovery, technical demos, POC design and execution, RFP/RFI responses, executive presentations.</p></div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">Technical</span>
+      <div><p>Networking &amp; DNS, Docker, Linux administration, Ansible, Swift/SwiftUI, video production and editing.</p></div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">On the side</span>
+      <div><p>Ships independent iOS apps (League Rewind, Closed, P10) — full lifecycle from design through App Store release.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Education">
+    <h2>Education</h2>
+    <div class="cv-entry">
+      <span class="cv-when">B.A.</span>
+      <div>
+        <h3>Theatre · <span class="org">Illinois State University</span></h3>
+        <p>Where the "enthusiastically sharing" half comes from.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="no-print" style="margin-top: var(--space-7); color: var(--text-muted); font-size: var(--step--1);">This page is print-friendly — header and footer drop out when you print or save as PDF.</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Nick Bodmer</span>
+    <span><em class="mission" style="font-size: var(--step--1); font-weight: 500;">Enthusiastically sharing curiosity.</em> · <a href="#rss">RSS</a></span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;auto&quot;, &quot;options&quot;: [&quot;auto&quot;, &quot;light&quot;, &quot;dark&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;fonts&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;system-sans&quot;, &quot;options&quot;: [&quot;system-sans&quot;, &quot;iowan&quot;, &quot;newsreader&quot;, &quot;charter&quot;, &quot;nunito&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;bg&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;glow&quot;, &quot;options&quot;: [&quot;glow&quot;, &quot;graph&quot;, &quot;paper&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;glowIntensity&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 50, &quot;min&quot;: 0, &quot;max&quot;: 100, &quot;step&quot;: 5, &quot;tsType&quot;: &quot;number&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { this.applyTheme(); }
+  componentDidUpdate() { this.applyTheme(); }
+  applyTheme() {
+    const t = this.props.theme ?? 'auto';
+    if (t === 'auto') delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = t;
+    const f = this.props.fonts ?? 'system-sans';
+    if (f === 'system-sans') delete document.documentElement.dataset.fonts;
+    else document.documentElement.dataset.fonts = f;
+    const b = this.props.bg ?? 'glow';
+    if (b === 'glow') delete document.documentElement.dataset.bg;
+    else document.documentElement.dataset.bg = b;
+    const g = this.props.glowIntensity ?? 85;
+    document.documentElement.style.setProperty('--glow-k', String(g / 50));
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

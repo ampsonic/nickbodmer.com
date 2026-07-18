@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { sortByDateDesc } from '../../lib/post-utils';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(sortByDateDesc);
+const years = [...new Set(posts.map((p) => p.data.date.getUTCFullYear()))];
+---
+
+<BaseLayout
+  title="Posts"
+  description="Things I figured out and wanted to share — homelab, Apple stuff, and the apps."
+>
+  <h1 style="margin-top: var(--space-6);">Posts</h1>
+  <p class="page-lede">
+    Things I figured out and wanted to share — homelab, Apple stuff, and the apps.
+    <a href="/feed.xml">Subscribe by RSS</a>.
+  </p>
+
+  {
+    years.map((year) => (
+      <>
+        <h2 class="year-heading">{year}</h2>
+        <PostList posts={posts.filter((p) => p.data.date.getUTCFullYear() === year)} showYear={false} />
+      </>
+    ))
+  }
+</BaseLayout>

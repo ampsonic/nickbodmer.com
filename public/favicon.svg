@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .n { fill: #3d342a; }
+    @media (prefers-color-scheme: dark) { .n { fill: #e9e3d8; } }
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; font-weight: 700; }
+  </style>
+  <text class="n" x="4" y="78" font-size="82">N</text>
+  <circle cx="84" cy="70" r="10" fill="#b06e26"/>
+</svg>

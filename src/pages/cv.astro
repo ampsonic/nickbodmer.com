@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="CV" description="CV of Nick Bodmer — Sales Engineer.">
+  <header class="cv-header" style="margin-top: var(--space-6);">
+    <div>
+      <h1>Nick Bodmer</h1>
+      <p style="color: var(--text-muted); margin: var(--space-2) 0 0;">Sales Engineer</p>
+    </div>
+    <address class="cv-contact" style="font-style: normal;">
+      <a href="mailto:nick@nickbodmer.com">nick@nickbodmer.com</a><br />
+      <a href="https://nickbodmer.com">nickbodmer.com</a><br />
+      <a href="https://linkedin.com/in/nickbodmer">linkedin.com/in/nickbodmer</a>
+    </address>
+  </header>
+
+  <section class="section" aria-label="Experience">
+    <h2>Experience</h2>
+    <div class="cv-entry">
+      <span class="cv-when">2023 – present</span>
+      <div>
+        <h3>Sales Engineer · <span class="org">Everpure Data</span></h3>
+        <p>
+          Technical lead on enterprise data-platform deals: discovery, demos, proof-of-concept
+          builds, and RFP responses. <em>(Placeholder detail — real bullets to follow from LinkedIn.)</em>
+        </p>
+      </div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">2018 – 2023</span>
+      <div>
+        <h3>Senior Solutions Consultant · <span class="org">[Placeholder Company]</span></h3>
+        <ul>
+          <li>Owned technical evaluations for mid-market and enterprise prospects. <em>(placeholder)</em></li>
+          <li>Built demo environments and internal tooling used across the SE team. <em>(placeholder)</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">2013 – 2018</span>
+      <div>
+        <h3>Technical Account Manager · <span class="org">[Placeholder Company]</span></h3>
+        <p>Post-sales technical relationship owner for a portfolio of enterprise accounts. <em>(placeholder)</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Skills">
+    <h2>Skills</h2>
+    <div class="cv-entry">
+      <span class="cv-when">Pre-sales</span>
+      <div><p>Discovery, technical demos, POC design and execution, RFP/RFI responses, executive presentations.</p></div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">Technical</span>
+      <div><p>Networking &amp; DNS, Docker, Linux administration, Ansible, Swift/SwiftUI, video production and editing.</p></div>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-when">On the side</span>
+      <div><p>Ships independent iOS apps (League Rewind, Closed, P10) — full lifecycle from design through App Store release.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Education">
+    <h2>Education</h2>
+    <div class="cv-entry">
+      <span class="cv-when">B.A.</span>
+      <div>
+        <h3>Theatre · <span class="org">Illinois State University</span></h3>
+        <p>Where the “enthusiastically sharing” half comes from.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="no-print" style="margin-top: var(--space-7); color: var(--text-muted); font-size: var(--step--1);">
+    This page is print-friendly — header and footer drop out when you print or save as PDF.
+  </p>
+</BaseLayout>
