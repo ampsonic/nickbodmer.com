@@ -8,7 +8,8 @@
     "build": "astro build && node scripts/flatten-html-redirects.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "migrate": "node scripts/migrate-microblog.mjs"
+    "migrate": "node scripts/migrate-microblog.mjs",
+    "deploy": "sh scripts/deploy.sh"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",

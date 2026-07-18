@@ -7,3 +7,6 @@ npm-debug.log*
 
 # local archive of the old Hugo site + micro.blog exports — never commit
 archive/
+
+# Coolify API token for LAN deploys — never commit
+.env.deploy
