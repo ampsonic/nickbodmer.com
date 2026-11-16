@@ -1,0 +1,9 @@
+# Weekly check of the Dockerfile's base images (FROM lines).
+# Merging a Dependabot PR pushes to main, which Coolify auto-deploys.
+# npm/pip vulnerabilities are covered by Dependabot security updates (repo setting).
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
